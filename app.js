@@ -3,6 +3,9 @@ var exphbs  = require('express-handlebars');
 var port = process.env.PORT || 3000
 
 var app = express();
+
+
+const mercadopago= require('./mercadoPagoController/MercadoPago')
  
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -18,5 +21,7 @@ app.get('/', function (req, res) {
 app.get('/detail', function (req, res) {
     res.render('detail', req.query);
 });
+
+app.post('api/v1/mercadopago', mercadopago.mercadopago)
 
 app.listen(port);
